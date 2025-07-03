@@ -8,6 +8,8 @@ export default function Header() {
         <div className="space-x-4">
           <Link href="/products">Products</Link>
           <Link href="/cart">Cart</Link>
+          <Link href="/checkout">Checkout</Link>
+
         </div>
       </nav>
     </header>

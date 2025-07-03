@@ -1,4 +1,5 @@
 import { useCart } from '../context/CartContext';
+import Link from 'next/link';
 
 export default function CartPage() {
   const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
@@ -8,6 +9,7 @@ export default function CartPage() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
   
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
@@ -56,9 +58,16 @@ export default function CartPage() {
             <p className="text-lg font-semibold">
               Total: <span className="text-green-600">${total.toFixed(2)}</span>
             </p>
+            <Link href="/checkout" className="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              Proceed to Checkout
+            </Link>
           </div>
+          
         </div>
+        
       )}
+      
     </div>
+    
   );
 }
