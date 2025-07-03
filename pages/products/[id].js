@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import products from '../../data/products';
 import { useCart } from '../../context/CartContext';
+import toast from 'react-hot-toast';
 
 export default function ProductDetailsPage() {
   const router = useRouter();
@@ -18,7 +19,9 @@ export default function ProductDetailsPage() {
       <p className="text-xl font-semibold text-green-600 mb-4">${product.price}</p>
 
       <button
-        onClick={() => addToCart(product)}
+        onClick={() => {addToCart(product);
+          toast.success(`${product.name} added to cart!`);
+        }}
         className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
       >
         Add to Cart
