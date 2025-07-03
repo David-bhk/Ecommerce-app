@@ -1,7 +1,8 @@
 import { useCart } from '../context/CartContext';
 
 export default function CartPage() {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+
 
   const total = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -22,12 +23,23 @@ export default function CartPage() {
     className="border p-4 rounded flex justify-between items-center"
   >
     <div>
-      <h2 className="text-xl font-semibold">
-        {item.name} <span className="text-sm text-gray-500">x{item.quantity}</span>
-      </h2>
-      <p className="text-gray-600">
-        ${item.price} each — ${item.price * item.quantity} total
-      </p>
+      <h2 className="text-xl font-semibold">{item.name}</h2>
+      <p className="text-gray-600">${item.price} each</p>
+      <div className="flex items-center space-x-2 mt-2">
+        <button
+          onClick={() => decreaseQuantity(item.id)}
+          className="px-2 py-1 bg-gray-200 text-gray-800 rounded"
+        >
+          -
+        </button>
+        <span className="font-medium">x{item.quantity}</span>
+        <button
+          onClick={() => increaseQuantity(item.id)}
+          className="px-2 py-1 bg-gray-200 text-gray-800 rounded"
+        >
+          +
+        </button>
+      </div>
     </div>
 
     <button
@@ -38,6 +50,7 @@ export default function CartPage() {
     </button>
   </div>
 ))}
+
 
           <div className="text-right mt-6">
             <p className="text-lg font-semibold">
